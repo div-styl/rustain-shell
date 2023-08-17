@@ -25,6 +25,11 @@ fn input(cmdline: &mut String) -> String {
     cmdline.clone()
 }
 
+/**
+* *dashboard - function which will hold most op of shell
+* flag: works as infinite loop
+* Return: void
+*/
 pub fn dashboard(flag: &mut bool) {
     let prompt: String = String::from("root>> ");
     let mut cmd: String = String::new();
