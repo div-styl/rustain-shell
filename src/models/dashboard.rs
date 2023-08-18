@@ -4,6 +4,8 @@ use std::{
     process::exit,
 };
 
+
+use super::parse;
 /**
  * *output - function that flush the prompt
  * @paramter: none
@@ -31,16 +33,16 @@ fn input(cmdline: &mut String) -> String {
 * Return: void
 */
 pub fn dashboard(flag: &mut bool) {
-    let prompt: String = String::from("root>> ");
+    let prompt: String = String::from("Rshell>> ");
     let mut cmd: String = String::new();
 
-    // create while loop for prompting the input
     while *flag {
         cprint!("<green>{}</>", prompt);
         output();
         cmd.clear();
-
-        input(&mut cmd);
+        input(&mut cmd); // Read input from the user
+        parse::parsecmd(&mut cmd); // Parse the input
+    
         if cmd.is_empty() {
             cprintln!("<red><bold>BYE</bold></red>");
             exit(1);
@@ -48,4 +50,5 @@ pub fn dashboard(flag: &mut bool) {
             print!("{}", cmd);
         }
     }
+    
 }
