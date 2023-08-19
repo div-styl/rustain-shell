@@ -1,3 +1,4 @@
+#[warn(dead_code)]
 mod models;
 use models::dashboard::dashboard;
 fn main() {

@@ -20,11 +20,10 @@ fn output() {
  * @cmdline: A mutable string which refurs to the output
  * Return: string input
  */
-fn input(cmdline: &mut String) -> String {
+fn input(cmdline: &mut String) {
     io::stdin()
         .read_line(cmdline)
-        .expect("failed to read the command?");
-    cmdline.clone()
+        .expect("failed to read the cmdline");
 }
 
 /**
@@ -41,14 +40,14 @@ pub fn dashboard(flag: &mut bool) {
         output();
         cmd.clear();
         input(&mut cmd); // Read input from the user
-        parse::parsecmd(&mut cmd); // Parse the input
-    
-        if cmd.is_empty() {
+
+        let (cmdline, argu) = parse::parsecmd(&cmd);
+        
+        if cmdline.is_empty() {
             cprintln!("<red><bold>BYE</bold></red>");
             exit(1);
         } else {
-            print!("{}", cmd);
+            println!("{} {:?}",cmdline, argu);
         }
     }
-    
 }
