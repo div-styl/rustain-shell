@@ -5,6 +5,8 @@ use std::{
 };
 
 
+use crate::models::execute::execmd;
+
 use super::parse;
 /**
  * *output - function that flush the prompt
@@ -47,7 +49,8 @@ pub fn dashboard(flag: &mut bool) {
             cprintln!("<red><bold>BYE</bold></red>");
             exit(1);
         } else {
-            println!("{} {:?}",cmdline, argu);
+            // println!("{} {:?}",cmdline, argu);
+            execmd(&cmdline, &argu);
         }
     }
 }
