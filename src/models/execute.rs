@@ -20,6 +20,9 @@ pub fn execmd(cmdline: &str, argu: &[String]) {
             cprintln!("<green><bold> You Are Exiting Rustain Shell! I Will Miss You</>");
             exit(0);
         }
+        "" => {
+            
+        }
         _ => {
             // Handle non-exit command here
             if output.is_err(){
