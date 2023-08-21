@@ -10,7 +10,7 @@ use crate::models::dashboard::prompt;
  * * Return: void
 */
 pub fn execmd(cmdline: &str, argu: &[String]) {
-    let wrogcmd = emojis::get("😡").unwrap();
+    
     let output = Command::new(cmdline)
         .args(argu)
         .status();
@@ -23,7 +23,7 @@ pub fn execmd(cmdline: &str, argu: &[String]) {
             // Handle non-exit command here
             if output.is_err(){
                 prompt(false);
-                cprintln!("<red!><bold>{} Error: Command Not Found: {}</>", wrogcmd, cmdline );
+                cprintln!("<red!><bold>Error: Command Not Found: {}</>", cmdline );
             }
         }
     }

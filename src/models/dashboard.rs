@@ -28,7 +28,7 @@ pub fn prompt(check: bool) {
     if check == true
     {
         let prompt = String::from(" 〉");
-        cprint!("<magenta!><bold>{}{}</> ",saluting, prompt);
+        cprint!("<magenta!><bold>{} {}</> ",saluting, prompt);
         io::stdout().flush().expect("failed to return prompt");
     } 
     else if check == false
