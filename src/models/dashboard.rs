@@ -25,19 +25,18 @@ pub fn input(cmdline: &mut String) {
 pub fn prompt(check: bool) {
     let saluting = emojis::get("🫡").unwrap();
     let anger = emojis::get("😡").unwrap();
-    if check == true
+    if check
     {
         let prompt = String::from(" 〉");
         cprint!("<magenta!><bold>{} {}</> ",saluting, prompt);
         io::stdout().flush().expect("failed to return prompt");
     } 
-    else if check == false
+    else if !check
     {
         let prompt = String::from(" 〉");
         cprint!("<red!><bold>{}{}</> ",anger,prompt);
         io::stdout().flush().expect("failed to return prompt");
     }
-
 }
 
 /**
