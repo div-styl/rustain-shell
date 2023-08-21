@@ -1,7 +1,7 @@
 use std::process::Command;
 use color_print::cprintln;
 
-use crate::models::{dashboard::prompt};
+use crate::models::dashboard::prompt;
 
 /**
  * * execmd - function that execute the command

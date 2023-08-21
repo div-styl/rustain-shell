@@ -1,4 +1,4 @@
-use std::{io::{self, Write}, process::exit}; use color_print:: cprintln;
+use std::process::exit; use color_print:: cprintln;
 
 
 pub fn exiting_shell(code: i32) {
