@@ -1,7 +1,7 @@
 use std::process::Command;
 use color_print::cprintln;
 
-use crate::models::errorhandl::errorprompt;
+use crate::models::{dashboard::prompt};
 
 /**
  * * execmd - function that execute the command
@@ -22,7 +22,7 @@ pub fn execmd(cmdline: &str, argu: &[String]) {
         _ => {
             // Handle non-exit command here
             if output.is_err(){
-                errorprompt();
+                prompt(false);
                 cprintln!("<red!><bold>{} Error: Command Not Found: {}</>", wrogcmd, cmdline );
             }
         }

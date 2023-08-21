@@ -1,14 +1,5 @@
-use std::{io::{self, Write}, process::exit}; use color_print::{cprint, cprintln};
-/**
- * *errorprompt - function that print the error prompt
- * *Return: void
-*/
-pub fn errorprompt()
-{
-    let prompt = String::from("〉");
-    cprint!("<red!><bold>{}</> ",prompt);
-    io::stdout().flush().expect("failed to return prompt");
-}
+use std::{io::{self, Write}, process::exit}; use color_print:: cprintln;
+
 
 pub fn exiting_shell(code: i32) {
     let bye = emojis::get("👋").unwrap();

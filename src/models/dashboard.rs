@@ -22,10 +22,22 @@ pub fn input(cmdline: &mut String) {
  * *prompt - function that print the prompt
  * *Return: void
 */
-pub fn prompt() {
-    let prompt = String::from("〉");
-    cprint!("<magenta!><bold>{}</> ", prompt);
-    io::stdout().flush().expect("failed to return prompt");
+pub fn prompt(check: bool) {
+    let saluting = emojis::get("🫡").unwrap();
+    let anger = emojis::get("😡").unwrap();
+    if check == true
+    {
+        let prompt = String::from(" 〉");
+        cprint!("<magenta!><bold>{}{}</> ",saluting, prompt);
+        io::stdout().flush().expect("failed to return prompt");
+    } 
+    else if check == false
+    {
+        let prompt = String::from(" 〉");
+        cprint!("<red!><bold>{}{}</> ",anger,prompt);
+        io::stdout().flush().expect("failed to return prompt");
+    }
+
 }
 
 /**
@@ -37,7 +49,7 @@ pub fn dashboard(flag: &mut bool) {
     let mut cmd: String = String::new();
 
     while *flag {
-        prompt(); // print the prompt
+        prompt(true); // print the prompt
         cmd.clear(); // clear the input for avoiding duplication or appending the input
         input(&mut cmd); // Read input from the user
 
