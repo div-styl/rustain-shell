@@ -1,12 +1,7 @@
-use color_print::{cprint, cprintln};
-use std::{
-    io::{self, Write},
-    process::exit,
-};
+use super::{errorhandl::exiting_shell, parse};
 use crate::models::execute::execmd;
-use super::parse;
-
-
+use color_print::cprint;
+use std::io::{self, Write};
 
 /**
  * *input - function that get the input from user
@@ -14,22 +9,24 @@ use super::parse;
  * Return: string input
 */
 pub fn input(cmdline: &mut String) {
-    io::stdin()
+    if io::stdin()
         .read_line(cmdline)
-        .expect("failed to read the cmdline");
+        .expect("failed to read the cmdline")
+        == 0
+    {
+        exiting_shell(0);
+    }
 }
-
 
 /**
  * *prompt - function that print the prompt
  * *Return: void
 */
-pub fn prompt () {
+pub fn prompt() {
     let prompt = String::from("〉");
-    cprint!("<magenta!><bold>{}</> ",prompt);
+    cprint!("<magenta!><bold>{}</> ", prompt);
     io::stdout().flush().expect("failed to return prompt");
 }
-
 
 /**
 * *dashboard - function which will hold most op of shell
@@ -45,11 +42,10 @@ pub fn dashboard(flag: &mut bool) {
         input(&mut cmd); // Read input from the user
 
         let (cmdline, argu) = parse::parsecmd(&cmd);
-        
+
         // check if the input is empty or not (if empty then exit the shell using Ctrl+D)
         if cmdline == "exit" || cmdline == "quit" {
-            cprintln!("<red><bold>BYE</bold></red>");
-            exit(0);
+            exiting_shell(0);
         } else {
             // println!("{} {:?}",cmdline, argu);
             execmd(&cmdline, &argu); // execute the command

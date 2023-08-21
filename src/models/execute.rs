@@ -1,4 +1,4 @@
-use std::process::{Command, exit};
+use std::process::Command;
 use color_print::cprintln;
 
 use crate::models::errorhandl::errorprompt;
@@ -16,18 +16,14 @@ pub fn execmd(cmdline: &str, argu: &[String]) {
         .status();
 
     match cmdline {
-        "exit" => {
-            cprintln!("<green><bold> You Are Exiting Rustain Shell! I Will Miss You</>");
-            exit(0);
-        }
         "" => {
-            
+            // *empty input do nothing!
         }
         _ => {
             // Handle non-exit command here
             if output.is_err(){
                 errorprompt();
-                cprintln!("<red><bold>{} Error: Command Not Found: {}</>", wrogcmd, cmdline );
+                cprintln!("<red!><bold>{} Error: Command Not Found: {}</>", wrogcmd, cmdline );
             }
         }
     }

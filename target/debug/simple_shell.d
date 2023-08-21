@@ -1,1 +1,0 @@
-/mnt/DATA/Random/rustain-shell/target/debug/simple_shell: /mnt/DATA/Random/rustain-shell/src/main.rs /mnt/DATA/Random/rustain-shell/src/models/dashboard.rs /mnt/DATA/Random/rustain-shell/src/models/errorhandl.rs /mnt/DATA/Random/rustain-shell/src/models/execute.rs /mnt/DATA/Random/rustain-shell/src/models/mod.rs /mnt/DATA/Random/rustain-shell/src/models/parse.rs
