@@ -1,3 +1,10 @@
+/**
+ * *parsecmd - function which parse cmdline into cmd and argu like (ls -l)
+ * @cmdline: str which represent the main cmdline
+ * * Return: string and vector of string type
+ */
+
+
 pub fn parsecmd(cmdline: &str) -> (String, Vec<String>) {
     // Remove leading and trailing whitespace
     let cmdline = cmdline.trim();

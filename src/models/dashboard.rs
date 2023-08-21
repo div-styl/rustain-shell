@@ -3,30 +3,33 @@ use std::{
     io::{self, Write},
     process::exit,
 };
-
-
 use crate::models::execute::execmd;
-
 use super::parse;
-/**
- * *output - function that flush the prompt
- * @paramter: none
- * Return: none
- */
-fn output() {
-    io::stdout().flush().expect("failed to return prompt");
-}
+
+
 
 /**
  * *input - function that get the input from user
  * @cmdline: A mutable string which refurs to the output
  * Return: string input
- */
-fn input(cmdline: &mut String) {
+*/
+pub fn input(cmdline: &mut String) {
     io::stdin()
         .read_line(cmdline)
         .expect("failed to read the cmdline");
 }
+
+
+/**
+ * *prompt - function that print the prompt
+ * *Return: void
+*/
+pub fn prompt () {
+    let prompt = String::from("〉");
+    cprint!("<magenta!><bold>{}</> ",prompt);
+    io::stdout().flush().expect("failed to return prompt");
+}
+
 
 /**
 * *dashboard - function which will hold most op of shell
@@ -34,23 +37,22 @@ fn input(cmdline: &mut String) {
 * Return: void
 */
 pub fn dashboard(flag: &mut bool) {
-    let prompt: String = String::from("Rshell>> ");
     let mut cmd: String = String::new();
 
     while *flag {
-        cprint!("<green>{}</>", prompt);
-        output();
-        cmd.clear();
+        prompt(); // print the prompt
+        cmd.clear(); // clear the input for avoiding duplication or appending the input
         input(&mut cmd); // Read input from the user
 
         let (cmdline, argu) = parse::parsecmd(&cmd);
         
+        // check if the input is empty or not (if empty then exit the shell using Ctrl+D)
         if cmdline.is_empty() {
             cprintln!("<red><bold>BYE</bold></red>");
-            exit(1);
+            exit(0);
         } else {
             // println!("{} {:?}",cmdline, argu);
-            execmd(&cmdline, &argu);
+            execmd(&cmdline, &argu); // execute the command
         }
     }
 }
