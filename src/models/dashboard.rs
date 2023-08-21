@@ -47,7 +47,7 @@ pub fn dashboard(flag: &mut bool) {
         let (cmdline, argu) = parse::parsecmd(&cmd);
         
         // check if the input is empty or not (if empty then exit the shell using Ctrl+D)
-        if cmdline.is_empty() {
+        if cmdline == "exit" || cmdline == "quit" {
             cprintln!("<red><bold>BYE</bold></red>");
             exit(0);
         } else {
