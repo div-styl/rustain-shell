@@ -12,7 +12,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo r
 
 🫡 》 ls
-will list all files in your directory 
+# will list all files in your directory 
 🫡 》
 ```
 # Credit 
