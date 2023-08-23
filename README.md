@@ -9,7 +9,7 @@ Rustain Shell is a powerful yet user-friendly command-line interface designed to
 In order to use my <mark style="background: #BBFABBA6;">**Rustain shell**</mark> you have to install rust first. However, the installation script is made to automate the script.
 
 ```bash
-curl -fsSL https://github.com/div-styl/rustain-shell/raw/main/install.sh | sh
+curl -fsSL https://github.com/div-styl/rustain-shell/raw/main/install | sh
 ```
 
 ### manual installation 
