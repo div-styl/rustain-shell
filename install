@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 # colors
 RED='\033[0;31m'
@@ -9,24 +9,25 @@ NC='\033[0m' # No Color
 
 # print color
 cprint() {
-    local color=$1
-    local message=$2
-    printf "${1}${2}${NC}\n"
+    local color="$1"
+    local message="$2"
+    printf "${color}${message}${NC}\n"
 }
 
 # Install Rust if not in your machine
 
-if [ command -v rustc > /dev/null 2>&1 ] || [ command -v cargo > /dev/null 2>&1 ]; then
-    cprint $GREEN "[*] Rust is already installed I am cloning repo"
-    git clone --depth=1 https://github.com/div-styl/rustain-shell
+if [ -x "$(command -v rustc)" ] && [ -x "$(command -v cargo)" ]; then
+    cprint "$YELLOW" "[*] Rust is already installed. Cloning repo..."
+    git clone --depth=1 https://github.com/div-styl/rustain-shell > /dev/null 2>&1
+    cprint "$GREEN" "[*] Rustain-shell is cloned successfully. Use 'cargo run' to run it."
 else
-    cprint $MAGENTA "[!]Installing Rust"
-    if curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh /dev/null 2>&1; then
-        cprint $GREEN "[*] Rust is installed I am cloning repo"
-        git clone --depth=1 https://github.com/div-styl/rustain-shell
+    cprint "$MAGENTA" "[!] Installing Rust"
+    if curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh; then
+        cprint "$YELLOW" "[*] Rust is installed. Cloning repo..."
+        git clone --depth=1 https://github.com/div-styl/rustain-shell > /dev/null 2>&1
+        cprint "$GREEN" "[*] Rustain-shell cloned successfully. Use 'cargo run' to run it."
     else
-        cprint $RED "[!] Rust is not installed"
+        cprint "$RED" "[!] Rust is not installed"
         exit 1
     fi
 fi
-
