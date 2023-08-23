@@ -15,7 +15,7 @@ cprint() {
 }
 
 # Install Rust if not in your machine
-
+cprint "$RED" "[*] Checking if system have required packages and commands\n"
 if [ -x "$(command -v rustc)" ] && [ -x "$(command -v cargo)" ]; then
     cprint "$YELLOW" "[*] Rust is already installed. Cloning repo..."
     git clone --depth=1 https://github.com/div-styl/rustain-shell > /dev/null 2>&1
