@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+MAGENTA='\033[0;35m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# print color
+cprint() {
+    local color=$1
+    local message=$2
+    printf "${1}${2}${NC}\n"
+}
+
+# Install Rust if not in your machine
+
+if [ command -v rustc > /dev/null 2>&1 ] || [ command -v cargo > /dev/null 2>&1 ]; then
+    cprint $GREEN "[*] Rust is already installed I am cloning repo"
+    git clone --depth=1 https://github.com/div-styl/rustain-shell
+else
+    cprint $MAGENTA "[!]Installing Rust"
+    if curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh /dev/null 2>&1; then
+        cprint $GREEN "[*] Rust is installed I am cloning repo"
+        git clone --depth=1 https://github.com/div-styl/rustain-shell
+    else
+        cprint $RED "[!] Rust is not installed"
+        exit 1
+    fi
+fi
+

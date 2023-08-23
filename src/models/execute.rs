@@ -1,5 +1,5 @@
-use std::process::Command;
 use color_print::cprintln;
+use std::process::Command;
 
 use crate::models::dashboard::prompt;
 
@@ -10,10 +10,7 @@ use crate::models::dashboard::prompt;
  * * Return: void
 */
 pub fn execmd(cmdline: &str, argu: &[String]) {
-    
-    let output = Command::new(cmdline)
-        .args(argu)
-        .status();
+    let output = Command::new(cmdline).args(argu).status();
 
     match cmdline {
         "" => {
@@ -21,9 +18,9 @@ pub fn execmd(cmdline: &str, argu: &[String]) {
         }
         _ => {
             // Handle non-exit command here
-            if output.is_err(){
+            if output.is_err() {
                 prompt(false);
-                cprintln!("<red!><bold>Error: Command Not Found: {}</>", cmdline );
+                cprintln!("<red!><bold>Error: Command Not Found: {}</>", cmdline);
             }
         }
     }
