@@ -2,7 +2,8 @@
 name = "simple_shell"
 version = "0.1.0"
 edition = "2021"
-
+authors = ["div-styl"]
+description = "this a rustain shell meant for learning and developing the low-level skill at rust"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
